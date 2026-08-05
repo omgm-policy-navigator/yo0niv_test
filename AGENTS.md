@@ -20,6 +20,7 @@ This repository is the FastAPI backend for the Seoul newlywed policy navigator. 
 
 - Target Python 3.9 or newer.
 - Manage dependencies in `pyproject.toml`.
+- Keep resolved dependency versions in `uv.lock`.
 - Keep `.venv/` local and untracked.
 - Prefer explicit domain names over generic utilities.
 - Add an abstraction only when a concrete feature needs it.

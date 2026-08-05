@@ -26,6 +26,7 @@ Track implementation by small phases in pull requests and ADRs when a decision a
 - Keep domain vocabulary independent from FastAPI, databases, and LLM clients.
 - Add infrastructure adapters only when a feature needs them.
 - Prefer explicit types and small modules over broad utility layers.
+- Update `uv.lock` whenever project dependencies change.
 
 ## Test Rules
 

@@ -12,6 +12,12 @@ cp .env.example .env
 uvicorn policy_navigator.main:app --reload
 ```
 
+Locked install with uv:
+
+```bash
+UV_CACHE_DIR=.uv-cache uv sync --extra dev
+```
+
 Health check:
 
 ```bash
