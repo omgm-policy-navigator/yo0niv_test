@@ -26,6 +26,11 @@ pytest
 
 ## Documentation
 
+- [Idea Design](docs/idea-design.md)
+- [User Scenarios](docs/user-scenarios.md)
+- [Functional Requirements](docs/functional-requirements.md)
+- [Data Design](docs/data-design.md)
+- [System Architecture](docs/system-architecture.md)
 - [Architecture](docs/architecture.md)
 - [Development Process](docs/development-process.md)
 - [Troubleshooting](docs/troubleshooting.md)
