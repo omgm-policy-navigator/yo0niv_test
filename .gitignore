@@ -21,6 +21,7 @@ htmlcov/
 logs/
 *.log
 local-data/
+infra/postgres/data/
 
 # Build output
 build/

@@ -8,7 +8,7 @@ Frontend, data collection jobs, human review tooling, and production infrastruct
 
 ## Technology Stack
 
-- Python 3.9 or newer
+- Python 3.11
 - FastAPI and Uvicorn for HTTP APIs
 - Pydantic Settings for environment-based configuration
 - structlog for JSON structured logs
@@ -18,12 +18,14 @@ Planned persistence is PostgreSQL with pgvector. Database clients, migrations, a
 
 ## Module Boundaries
 
-- `backend/`: FastAPI backend source root.
-- `backend/policy_navigator/main.py`: backend application factory and runtime entrypoint.
-- `backend/policy_navigator/api/`: HTTP routes and request/response translation.
-- `backend/policy_navigator/core/`: cross-cutting runtime concerns such as configuration and logging.
-- `backend/policy_navigator/domain/`: backend-owned domain vocabulary and pure domain models.
-- `backend/policy_navigator/services/`: use-case orchestration across domain logic and infrastructure ports.
+- `backend/`: FastAPI backend project root.
+- `backend/app/main.py`: backend application factory and runtime entrypoint.
+- `backend/app/api/`: HTTP routes and request/response translation.
+- `backend/app/core/`: cross-cutting runtime concerns such as configuration, lifespan, logging, and request context.
+- `backend/app/db/`: PostgreSQL connection object and session factory boundary.
+- `backend/app/models/`: reserved for SQLAlchemy models in a later phase.
+- `backend/app/schemas/`: API schemas.
+- `backend/app/services/`: use-case orchestration across domain logic and infrastructure boundaries.
 - `frontend/`: React/Vite client boundary. No application code is added until frontend work begins.
 - `infra/`: infrastructure boundary for Docker, compose, deployment, and local runtime assets.
 - `tests/`: executable tests mirroring public behavior and stable domain vocabulary.
@@ -47,4 +49,4 @@ The MVP data model is expected to begin with:
 - `policy_relation`
 - `policy_document`
 
-`policy_document.embedding` should use pgvector when persistence is introduced. Avoid adding a separate vector database unless PostgreSQL becomes insufficient for observed retrieval scale.
+`policy_document.embedding` should use pgvector when persistence is introduced. Phase 1 provides only the PostgreSQL connection object; ORM models, repositories, and migrations are intentionally excluded.

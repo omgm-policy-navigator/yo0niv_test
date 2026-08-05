@@ -5,17 +5,10 @@
 ## Quick Start
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install ".[dev]"
 cp .env.example .env
-uvicorn policy_navigator.main:app --reload
-```
-
-Locked install with uv:
-
-```bash
-UV_CACHE_DIR=.uv-cache uv sync --extra dev
+cd backend
+UV_CACHE_DIR=../.uv-cache uv sync --extra dev
+UV_CACHE_DIR=../.uv-cache uv run uvicorn app.main:app --reload
 ```
 
 Health check:
@@ -27,8 +20,11 @@ curl http://127.0.0.1:8000/health
 Tests:
 
 ```bash
-pytest
+cd backend
+UV_CACHE_DIR=../.uv-cache uv run pytest
 ```
+
+Swagger opens at `http://localhost:8000/`.
 
 ## Documentation
 
@@ -37,6 +33,9 @@ pytest
 - [Functional Requirements](docs/functional-requirements.md)
 - [Data Design](docs/data-design.md)
 - [System Architecture](docs/system-architecture.md)
+- [Backend Contract](docs/contracts/backend.md)
+- [Backend Phase 1 Plan](docs/phases/backend-phase-1/plan.md)
+- [Backend Phase 1 Verification](docs/phases/backend-phase-1/verification.md)
 - [Architecture](docs/architecture.md)
 - [Development Process](docs/development-process.md)
 - [Troubleshooting](docs/troubleshooting.md)
@@ -44,4 +43,4 @@ pytest
 
 ## Repository Responsibility
 
-This repository owns the FastAPI backend API, rule-based policy pre-diagnosis boundary, RAG service boundary, runtime configuration, logging, and backend tests. Frontend UI, source data approval workflows, and production infrastructure can be added as separate modules or repositories when their ownership becomes concrete.
+This repository owns the FastAPI backend API, rule-based policy pre-diagnosis boundary, RAG service boundary, runtime configuration, logging, Docker Compose local runtime, and backend tests. Frontend UI, source data approval workflows, and production infrastructure can be added when their ownership becomes concrete.

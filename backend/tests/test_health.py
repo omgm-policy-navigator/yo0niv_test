@@ -1,8 +1,12 @@
 from fastapi.testclient import TestClient
-from policy_navigator.main import create_app
+
+from app.core.config import get_settings
+from app.main import create_app
 
 
-def test_health_check_returns_runtime_status() -> None:
+def test_health_check_returns_runtime_status(monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    monkeypatch.setenv("APP_NAME", "OMGM Backend")
+    get_settings.cache_clear()
     client = TestClient(create_app())
 
     response = client.get("/health")
@@ -10,12 +14,14 @@ def test_health_check_returns_runtime_status() -> None:
     assert response.status_code == 200
     assert response.json() == {
         "status": "ok",
-        "app": "Seoul Newlywed Policy Navigator",
+        "app": "OMGM Backend",
         "environment": "local",
     }
 
 
-def test_health_check_returns_request_id_header() -> None:
+def test_health_check_returns_request_id_header(monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    monkeypatch.setenv("APP_NAME", "OMGM Backend")
+    get_settings.cache_clear()
     client = TestClient(create_app())
 
     response = client.get("/health", headers={"x-request-id": "test-request-id"})

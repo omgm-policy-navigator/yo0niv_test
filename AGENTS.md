@@ -6,11 +6,13 @@ This repository is the FastAPI backend for the Seoul newlywed policy navigator. 
 
 ## Architecture Rules
 
-- `backend/policy_navigator/main.py` is the backend application factory and runtime entrypoint.
-- `backend/policy_navigator/api/` contains HTTP routes only. Keep handlers thin and delegate use-case work to services.
-- `backend/policy_navigator/core/` contains cross-cutting runtime concerns such as settings and logging.
-- `backend/policy_navigator/domain/` contains backend-owned policy vocabulary and pure domain models. It must not import FastAPI, database clients, or LLM clients.
-- `backend/policy_navigator/services/` coordinates use cases and may depend on domain models and explicit infrastructure ports once those exist.
+- `backend/app/main.py` is the backend application factory and runtime entrypoint.
+- `backend/app/api/` contains HTTP routes only. Keep handlers thin and delegate use-case work to services.
+- `backend/app/core/` contains cross-cutting runtime concerns such as settings, lifespan, logging, and request context.
+- `backend/app/db/` contains database connection objects. Do not add ORM models or repositories before their phase.
+- `backend/app/models/` is reserved for SQLAlchemy models in a later phase.
+- `backend/app/schemas/` contains API response/request schemas. Entity and API schemas must stay separate once entities exist.
+- `backend/app/services/` coordinates use cases and may depend on domain models and explicit infrastructure boundaries once those exist.
 - `frontend/` is reserved for the React/Vite client once frontend implementation begins.
 - `infra/` is reserved for local/runtime infrastructure assets such as Docker, compose files, and deployment configuration once those are introduced.
 - `tests/` mirrors behavior that must keep working. Use `tests/resources/` only for small, non-secret fixtures.
@@ -18,9 +20,9 @@ This repository is the FastAPI backend for the Seoul newlywed policy navigator. 
 
 ## Code Standards
 
-- Target Python 3.9 or newer.
-- Manage dependencies in `pyproject.toml`.
-- Keep resolved dependency versions in `uv.lock`.
+- Target Python 3.11.
+- Manage backend dependencies in `backend/pyproject.toml` with `uv`.
+- Keep resolved backend dependency versions in `backend/uv.lock`.
 - Keep `.venv/` local and untracked.
 - Prefer explicit domain names over generic utilities.
 - Add an abstraction only when a concrete feature needs it.

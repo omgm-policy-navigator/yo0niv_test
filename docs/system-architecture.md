@@ -143,6 +143,8 @@ MVP에서는 로컬 LLM 후보로 Llama 3 또는 Mistral을 고려한다.
 - Health Check
 - 설정 로딩
 - 구조화 로그
+- Docker Compose 로컬 실행 환경
+- PostgreSQL 연결 객체
 - 정책 도메인 어휘
 - 테스트 구조
 - 백엔드 아키텍처 문서

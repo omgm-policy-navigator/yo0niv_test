@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from policy_navigator.core.config import get_settings
-from policy_navigator.domain.health import HealthResponse
+from app.core.config import get_settings
+from app.schemas.health import HealthResponse
 
 router = APIRouter(tags=["health"])
 
