@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
-from policy_navigator.main import create_app
+
+from app.main import create_app
 
 
 def test_not_found_error_includes_request_id() -> None:

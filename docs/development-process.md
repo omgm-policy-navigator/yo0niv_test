@@ -4,7 +4,7 @@
 
 Track implementation by small phases in pull requests and ADRs when a decision affects boundaries or future migration cost.
 
-1. Project foundation: runtime, health check, configuration, logging, tests, documentation.
+1. Project foundation: runtime, health check, configuration, logging, tests, Docker Compose, documentation.
 2. Domain vocabulary and question flow contracts.
 3. Rule evaluation service using in-memory fixtures.
 4. PostgreSQL schema, migrations, and repository ports.
@@ -26,7 +26,7 @@ Track implementation by small phases in pull requests and ADRs when a decision a
 - Keep domain vocabulary independent from FastAPI, databases, and LLM clients.
 - Add infrastructure adapters only when a feature needs them.
 - Prefer explicit types and small modules over broad utility layers.
-- Update `uv.lock` whenever project dependencies change.
+- Update `backend/uv.lock` whenever backend dependencies change.
 
 ## Test Rules
 
