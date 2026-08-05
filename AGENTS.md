@@ -1,0 +1,46 @@
+# AGENTS.md
+
+## Repository Purpose
+
+This repository is the FastAPI backend for the Seoul newlywed policy navigator. It owns backend APIs, policy condition vocabulary, rule-evaluation orchestration, RAG service boundaries, runtime configuration, structured logging, and backend tests.
+
+## Architecture Rules
+
+- `src/policy_navigator/main.py` is the application factory and runtime entrypoint.
+- `src/policy_navigator/api/` contains HTTP routes only. Keep handlers thin and delegate use-case work to services.
+- `src/policy_navigator/core/` contains cross-cutting runtime concerns such as settings and logging.
+- `src/policy_navigator/domain/` contains backend-owned policy vocabulary and pure domain models. It must not import FastAPI, database clients, or LLM clients.
+- `src/policy_navigator/services/` coordinates use cases and may depend on domain models and explicit infrastructure ports once those exist.
+- `tests/` mirrors behavior that must keep working. Use `tests/resources/` only for small, non-secret fixtures.
+- `docs/` contains living documents only. Do not create empty placeholder docs.
+
+## Code Standards
+
+- Target Python 3.9 or newer.
+- Manage dependencies in `pyproject.toml`.
+- Keep `.venv/` local and untracked.
+- Prefer explicit domain names over generic utilities.
+- Add an abstraction only when a concrete feature needs it.
+- Keep configuration environment-driven through `pydantic-settings`.
+- Emit structured JSON logs through `structlog`.
+
+## Test Standards
+
+- Default tests must run without network, database, LLM, or vector-store access.
+- Add or update tests with every behavior change.
+- Keep test fixtures deterministic and free of secrets.
+- Run `pytest` before handing off changes.
+
+## Documentation Standards
+
+- Keep `README.md` short: purpose, setup, execution, test commands, and links.
+- Put architecture and ownership details in `docs/architecture.md`.
+- Put phase tracking and contribution rules in `docs/development-process.md`.
+- Put operational fixes in `docs/troubleshooting.md`.
+- Put durable decisions in `docs/adr/`.
+
+## Git Hygiene
+
+- Do not commit secrets, `.env`, `.venv`, logs, local data, cache directories, or build artifacts.
+- Avoid reverting unrelated user changes.
+- Keep commits focused on the requested work.
