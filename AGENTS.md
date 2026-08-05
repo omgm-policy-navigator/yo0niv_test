@@ -6,11 +6,13 @@ This repository is the FastAPI backend for the Seoul newlywed policy navigator. 
 
 ## Architecture Rules
 
-- `src/policy_navigator/main.py` is the application factory and runtime entrypoint.
-- `src/policy_navigator/api/` contains HTTP routes only. Keep handlers thin and delegate use-case work to services.
-- `src/policy_navigator/core/` contains cross-cutting runtime concerns such as settings and logging.
-- `src/policy_navigator/domain/` contains backend-owned policy vocabulary and pure domain models. It must not import FastAPI, database clients, or LLM clients.
-- `src/policy_navigator/services/` coordinates use cases and may depend on domain models and explicit infrastructure ports once those exist.
+- `backend/policy_navigator/main.py` is the backend application factory and runtime entrypoint.
+- `backend/policy_navigator/api/` contains HTTP routes only. Keep handlers thin and delegate use-case work to services.
+- `backend/policy_navigator/core/` contains cross-cutting runtime concerns such as settings and logging.
+- `backend/policy_navigator/domain/` contains backend-owned policy vocabulary and pure domain models. It must not import FastAPI, database clients, or LLM clients.
+- `backend/policy_navigator/services/` coordinates use cases and may depend on domain models and explicit infrastructure ports once those exist.
+- `frontend/` is reserved for the React/Vite client once frontend implementation begins.
+- `infra/` is reserved for local/runtime infrastructure assets such as Docker, compose files, and deployment configuration once those are introduced.
 - `tests/` mirrors behavior that must keep working. Use `tests/resources/` only for small, non-secret fixtures.
 - `docs/` contains living documents only. Do not create empty placeholder docs.
 

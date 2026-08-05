@@ -23,11 +23,11 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/policy_navigator"]
+packages = ["backend/policy_navigator"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["backend"]
 
 [tool.ruff]
 line-length = 100
