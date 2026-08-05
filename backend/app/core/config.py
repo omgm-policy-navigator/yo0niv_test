@@ -9,9 +9,8 @@ class Settings(BaseSettings):
     app_name: str = Field(default="OMGM Backend", min_length=1)
     app_env: Literal["local", "test", "staging", "production"] = "local"
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = "INFO"
-    database_url: PostgresDsn = Field(
-        default="postgresql+asyncpg://omgm:omgm-local-password@localhost:5432/omgm"
-    )
+    backend_port: int = Field(default=8000, ge=1, le=65535)
+    database_url: PostgresDsn
 
     model_config = SettingsConfigDict(
         env_file="../.env",

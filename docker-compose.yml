@@ -19,6 +19,7 @@ services:
   backend:
     build:
       context: ./backend
+      target: development
     environment:
       APP_NAME: ${APP_NAME:-OMGM Backend}
       APP_ENV: ${APP_ENV:-local}

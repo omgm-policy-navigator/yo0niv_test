@@ -21,6 +21,7 @@ Stop the unrelated local process or verify the backend inside the container:
 
 ```bash
 docker compose exec backend python -c "import urllib.request; r=urllib.request.urlopen('http://127.0.0.1:8000/health'); print(r.status); print(r.read().decode())"
+docker compose exec backend python -c "import urllib.request; r=urllib.request.urlopen('http://127.0.0.1:8000/health/db'); print(r.status); print(r.read().decode())"
 ```
 
 This project maps local PostgreSQL to host port `5433` by default while containers still use `postgres:5432`.

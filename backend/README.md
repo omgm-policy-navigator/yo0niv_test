@@ -20,6 +20,7 @@ Health Check:
 
 ```bash
 curl http://localhost:8000/health
+curl http://localhost:8000/health/db
 ```
 
 ## Test
@@ -38,4 +39,4 @@ cp .env.example .env
 docker compose up
 ```
 
-Replace the placeholder `POSTGRES_PASSWORD` in `.env` before sharing or long-running local use.
+Replace the placeholder `POSTGRES_PASSWORD` in `.env` before sharing or long-running local use. Set `BACKEND_PORT=8001` if host port 8000 is already occupied.

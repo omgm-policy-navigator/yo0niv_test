@@ -19,3 +19,10 @@ def test_settings_accept_known_environment_values() -> None:
 def test_settings_reject_invalid_environment_values() -> None:
     with pytest.raises(ValidationError):
         Settings(app_env="prod", log_level="NOPE", database_url="not-a-url")
+
+
+def test_settings_require_database_url(monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    monkeypatch.delenv("DATABASE_URL", raising=False)
+
+    with pytest.raises(ValidationError):
+        Settings(_env_file=None)

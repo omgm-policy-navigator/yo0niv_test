@@ -9,6 +9,9 @@ Status: DONE
 - Added `backend/pyproject.toml` and generated `backend/uv.lock`.
 - Fixed Python runtime to 3.11.
 - Added PostgreSQL `DATABASE_URL` settings and SQLAlchemy async engine object.
+- Added lifespan-managed async engine disposal.
+- Added `GET /health/db` with PostgreSQL `SELECT 1` verification.
+- Split Dockerfile into production runtime and Compose development stages.
 - Added Dockerfile, Docker Compose, and pgvector init script.
 - Updated README, AGENTS, architecture, contract, and phase docs.
 - Added tests for settings, DB engine creation, error response, and health check.

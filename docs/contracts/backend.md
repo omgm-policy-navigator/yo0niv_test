@@ -30,6 +30,7 @@
 
 ```http
 GET /health
+GET /health/db
 ```
 
 Response:
@@ -39,6 +40,14 @@ Response:
   "status": "ok",
   "app": "OMGM Backend",
   "environment": "local"
+}
+```
+
+`GET /health/db` executes `SELECT 1` through the app-managed async SQLAlchemy engine and returns:
+
+```json
+{
+  "status": "ok"
 }
 ```
 
